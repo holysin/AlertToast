@@ -42,7 +42,7 @@ struct ActivityIndicator: UIViewRepresentable {
 
     func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
         let components = color.components()
-        return UIColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
+        uiView.color = UIColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
     }
 }
 #endif
