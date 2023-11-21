@@ -27,7 +27,7 @@ struct ActivityIndicator: NSViewRepresentable {
     }
 }
 #else
-@available(iOS 13, *)
+@available(iOS 14, *)
 struct ActivityIndicator: UIViewRepresentable {
 
     let color: Color
@@ -41,8 +41,7 @@ struct ActivityIndicator: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
-        let components = color.components()
-        uiView.color = UIColor(red: components.r, green: components.g, blue: components.b, alpha: components.a)
+        uiView.color = UIColor(color)
     }
 }
 #endif
