@@ -137,12 +137,13 @@ public struct AlertToast: View{
                    titleColor: Color? = nil,
                    subTitleColor: Color? = nil,
                    titleFont: Font? = nil,
-                   subTitleFont: Font? = nil)
+                   subTitleFont: Font? = nil,
+                   activityIndicatorColor: Color? = nil)
         
         ///Get background color
         var backgroundColor: Color? {
             switch self{
-            case .style(backgroundColor: let color, _, _, _, _):
+            case .style(backgroundColor: let color, _, _, _, _, _):
                 return color
             }
         }
@@ -150,7 +151,7 @@ public struct AlertToast: View{
         /// Get title color
         var titleColor: Color? {
             switch self{
-            case .style(_,let color, _,_,_):
+            case .style(_,let color, _,_,_,_):
                 return color
             }
         }
@@ -158,7 +159,7 @@ public struct AlertToast: View{
         /// Get subTitle color
         var subtitleColor: Color? {
             switch self{
-            case .style(_,_, let color, _,_):
+            case .style(_,_, let color, _,_,_):
                 return color
             }
         }
@@ -166,7 +167,7 @@ public struct AlertToast: View{
         /// Get title font
         var titleFont: Font? {
             switch self {
-            case .style(_, _, _, titleFont: let font, _):
+            case .style(_, _, _, titleFont: let font, _,_):
                 return font
             }
         }
@@ -174,8 +175,15 @@ public struct AlertToast: View{
         /// Get subTitle font
         var subTitleFont: Font? {
             switch self {
-            case .style(_, _, _, _, subTitleFont: let font):
+            case .style(_, _, _, _, subTitleFont: let font,_):
                 return font
+            }
+        }
+
+        var activityIndicatorColor: Color? {
+            switch self {
+            case .style(_, _, _, _, _, let color):
+                return color
             }
         }
     }
@@ -246,7 +254,7 @@ public struct AlertToast: View{
                             .renderingMode(.template)
                             .foregroundColor(color)
                     case .loading:
-                        ActivityIndicator()
+                         ActivityIndicator(color: style?.activityIndicatorColor ?? .white)
                     case .regular:
                         EmptyView()
                     }
@@ -292,7 +300,7 @@ public struct AlertToast: View{
                         .hudModifier()
                         .foregroundColor(color)
                 case .loading:
-                    ActivityIndicator()
+                    ActivityIndicator(color: style?.activityIndicatorColor ?? .white)
                 case .regular:
                     EmptyView()
                 }
@@ -359,7 +367,7 @@ public struct AlertToast: View{
                     .padding(.bottom)
                 Spacer()
             case .loading:
-                ActivityIndicator()
+                 ActivityIndicator(color: style?.activityIndicatorColor ?? .white)
             case .regular:
                 EmptyView()
             }

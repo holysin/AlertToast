@@ -10,7 +10,9 @@ import SwiftUI
 #if os(macOS)
 @available(macOS 11, *)
 struct ActivityIndicator: NSViewRepresentable {
-    
+
+    let color: Color
+
     func makeNSView(context: NSViewRepresentableContext<ActivityIndicator>) -> NSProgressIndicator {
         let nsView = NSProgressIndicator()
         
@@ -28,6 +30,8 @@ struct ActivityIndicator: NSViewRepresentable {
 @available(iOS 13, *)
 struct ActivityIndicator: UIViewRepresentable {
 
+    let color: Color
+
     func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
         
         let progressView = UIActivityIndicatorView(style: .large)
@@ -37,6 +41,7 @@ struct ActivityIndicator: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
+        uiView.color = UIColor(color)
     }
 }
 #endif
